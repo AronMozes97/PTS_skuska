@@ -1,19 +1,81 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\aronm\\Desktop\\Files\\UKF MGR 2\\Testing\\chromedriver-win64\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        //OPEN FIRST PAGE BY DRIVER
+        driver.get("https://ais2.ukf.sk/ais/start.do");
+
+        try {
+            Thread.sleep(1000);
+
+            //LOGIND DATA
+            String login = "303092";
+            String password = "9708181670";
+
+            //LOGIN TO AIS
+            driver.findElement(
+                    By.id("login")
+            ).sendKeys(login);
+
+            driver.findElement(
+                    By.id("heslo")
+            ).sendKeys(password);
+
+            driver.findElement(
+                    By.id("login-form-submit-btn")
+            ).click();
+
+            Thread.sleep(1000);
+
+            //START THE VIDEO
+
+            driver.switchTo().frame(driver.findElement(By.xpath("/html/body/app-root/div/div[1]/div[3]/app-banner/div/div/section/mat-expansion-panel/div/div/iframe")));
+
+            driver.findElement(
+                    By.xpath("/html/body")
+            ).click();
+
+            Thread.sleep(7000);
+
+            driver.findElement(
+                    By.xpath("/html/body")
+            ).click();
+
+            Thread.sleep(2000);
+
+            driver.switchTo().defaultContent();
+
+            driver.findElement(
+                    By.xpath("/html/body/app-root/lib-app-header/nav/div[3]")
+            ).click();
+
+            driver.findElement(
+                    By.xpath("/html/body/app-root/lib-app-header/nav/div[3]/div/a")
+            ).click();
+
+
+
+        } catch (InterruptedException e){
+                //PRINT THE ERROR OUT
+                e.printStackTrace();
+            }
+
+            //CLOSE THE BROWSER
+            driver.quit();
     }
 }
