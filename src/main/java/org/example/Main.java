@@ -16,8 +16,8 @@ public class Main {
             Thread.sleep(1000);
 
             //LOGIND DATA
-            String login = "303092";
-            String password = "9708181670";
+            String login = "login";
+            String password = "password";
 
             //LOGIN TO AIS
             driver.findElement(
