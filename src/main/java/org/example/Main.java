@@ -58,11 +58,11 @@ public class Main {
                     By.xpath("/html/body/app-root/lib-app-header/nav/div[3]")
             ).click();
 
+            Thread.sleep(1000);
+
             driver.findElement(
                     By.xpath("/html/body/app-root/lib-app-header/nav/div[3]/div/a")
             ).click();
-
-
 
         } catch (InterruptedException e){
                 //PRINT THE ERROR OUT
