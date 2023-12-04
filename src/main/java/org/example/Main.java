@@ -1,15 +1,7 @@
 package org.example;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.interactions.Actions;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,7 +35,7 @@ public class Main {
             Thread.sleep(1000);
 
             //START THE VIDEO
-
+            // SWITCH TO IFRAME
             driver.switchTo().frame(driver.findElement(By.xpath("/html/body/app-root/div/div[1]/div[3]/app-banner/div/div/section/mat-expansion-panel/div/div/iframe")));
 
             driver.findElement(
@@ -58,8 +50,10 @@ public class Main {
 
             Thread.sleep(2000);
 
+            //FOCUS THE MAIN HTML
             driver.switchTo().defaultContent();
 
+            //LOGOUT
             driver.findElement(
                     By.xpath("/html/body/app-root/lib-app-header/nav/div[3]")
             ).click();
